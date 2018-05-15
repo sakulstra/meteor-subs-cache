@@ -108,6 +108,7 @@ SubsCache = function(expireAfter, cacheLimit, debug = false) {
         }
 
         this.cache[hash].restart();
+        console.log(hash, this.cache[hash].count);
       } else {
         // create an object to represent this subscription in the cache
         var cachedSub = {
@@ -194,8 +195,8 @@ SubsCache = function(expireAfter, cacheLimit, debug = false) {
             if (this.timerId) {
               clearTimeout(this.timerId);
               this.timerId = null;
-              this.count -= 1;
             }
+            this.count -= 1;
             return this.start();
           },
           stopNow: function() {
